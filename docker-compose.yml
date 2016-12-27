@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  wordpress:
+    image: wordpress:4.7.0-php7.0-apache
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+    links:
+      - database:mysql
+
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppass
